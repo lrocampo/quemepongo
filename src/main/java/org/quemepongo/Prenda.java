@@ -1,28 +1,17 @@
 package org.quemepongo;
 
+import static java.util.Objects.requireNonNull;
+
 public class Prenda {
-  Tipo tipo;
+  Tipo tipoPrenda;
   String material;
   Color colorPrincipal;
   Color colorSecundario;
 
   public Prenda(Tipo tipo, String material, Color colorPrincipal, Color colorSecundario) {
-    validarCamposRequeridos(tipo, material, colorPrincipal);
-    this.tipo = tipo;
-    this.material = material;
-    this.colorPrincipal = colorPrincipal;
+    this.tipoPrenda = requireNonNull(tipo, "tipo de prenda es obligatorio");
+    this.material = requireNonNull(material, "material es obligatorio");
+    this.colorPrincipal = requireNonNull(colorPrincipal, "color principal es obligatorio");
     this.colorSecundario = colorSecundario;
-  }
-
-  private void validarCamposRequeridos(Tipo tipo, String material, Color colorPrincipal) {
-    if (tipo == null) {
-      throw new IllegalArgumentException("El tipo es obligatorio");
-    }
-    if (material == null) {
-      throw new IllegalArgumentException("El material es obligatorio");
-    }
-    if (colorPrincipal == null) {
-      throw new IllegalArgumentException("El color principal es obligatorio");
-    }
   }
 }
