@@ -20,7 +20,7 @@ public class PrendaTest {
 
   @Test
   public void puedoSaberElMaterialDeUnaPrenda() {
-    assertEquals("Cuero", zapato().getMaterial());
+    assertEquals("Cuero", zapato().getMaterial().getNombre());
   }
 
   @Test
@@ -34,18 +34,23 @@ public class PrendaTest {
   }
 
   @Test
+  public void puedoSaberLaTramaDeUnaPrenda() {
+    assertEquals("LISA", zapato().getTrama().toString());
+  }
+
+  @Test
   public void noPuedeHaberUnaPrendaSinTipo() {
-    assertThrows(NullPointerException.class, () -> new Prenda(null, "Cuero", colorPrincipal(), null));
+    assertThrows(NullPointerException.class, () -> new Prenda(null, cuero(), colorPrincipal(), null, null));
   }
 
   @Test
   public void noPuedeHaberUnaPrendaSinCategoria() {
-    assertThrows(NullPointerException.class, () -> new Prenda(Tipo.ZAPATO, null, colorPrincipal(), null));
+    assertThrows(NullPointerException.class, () -> new Prenda(Tipo.ZAPATO, null, colorPrincipal(), null, null));
   }
 
   @Test
   public void noPuedeHaberUnaPrendaSinColorPrincipal() {
-    assertThrows(NullPointerException.class, () -> new Prenda(Tipo.ZAPATO, "Cuero", null, null));
+    assertThrows(NullPointerException.class, () -> new Prenda(Tipo.ZAPATO, cuero(), null, null, null));
   }
 
   @Test
@@ -54,11 +59,11 @@ public class PrendaTest {
   }
 
   private Prenda zapato() {
-    return new Prenda(Tipo.ZAPATO, "Cuero", colorPrincipal(), null);
+    return new Prenda(Tipo.ZAPATO, cuero(), colorPrincipal(), null, Trama.LISA);
   }
   
   private Prenda zapatoConColorOpcional() {
-    return new Prenda(Tipo.ZAPATO, "Cuero", colorPrincipal(), colorSecundario());
+    return new Prenda(Tipo.ZAPATO, cuero(), colorPrincipal(), colorSecundario(), null);
   }
   
   private Color colorPrincipal() {
@@ -67,6 +72,10 @@ public class PrendaTest {
   
   private Color colorSecundario() {
     return new Color(20, 20, 20);
+  }
+
+  private Material cuero() {
+    return new Material("Cuero", Trama.LISA);
   }
 
 }
