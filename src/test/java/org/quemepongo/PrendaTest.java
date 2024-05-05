@@ -20,7 +20,7 @@ public class PrendaTest {
 
   @Test
   public void puedoSaberElMaterialDeUnaPrenda() {
-    assertEquals("Cuero", zapato().getMaterial().getNombre());
+    assertEquals("CUERO", zapato().getMaterial().toString());
   }
 
   @Test
@@ -40,7 +40,7 @@ public class PrendaTest {
 
   @Test
   public void noPuedeHaberUnaPrendaSinTipo() {
-    assertThrows(NullPointerException.class, () -> new Prenda(null, cuero(), colorPrincipal(), null, null));
+    assertThrows(NullPointerException.class, () -> new Prenda(null, Material.CUERO, colorPrincipal(), null, null));
   }
 
   @Test
@@ -50,7 +50,7 @@ public class PrendaTest {
 
   @Test
   public void noPuedeHaberUnaPrendaSinColorPrincipal() {
-    assertThrows(NullPointerException.class, () -> new Prenda(Tipo.ZAPATO, cuero(), null, null, null));
+    assertThrows(NullPointerException.class, () -> new Prenda(Tipo.ZAPATO, Material.CUERO, null, null, null));
   }
 
   @Test
@@ -59,11 +59,11 @@ public class PrendaTest {
   }
 
   private Prenda zapato() {
-    return new Prenda(Tipo.ZAPATO, cuero(), colorPrincipal(), null, Trama.LISA);
+    return new Prenda(Tipo.ZAPATO, Material.CUERO, colorPrincipal(), null, Trama.LISA);
   }
   
   private Prenda zapatoConColorOpcional() {
-    return new Prenda(Tipo.ZAPATO, cuero(), colorPrincipal(), colorSecundario(), null);
+    return new Prenda(Tipo.ZAPATO, Material.CUERO, colorPrincipal(), colorSecundario(), null);
   }
   
   private Color colorPrincipal() {
@@ -73,9 +73,4 @@ public class PrendaTest {
   private Color colorSecundario() {
     return new Color(20, 20, 20);
   }
-
-  private Material cuero() {
-    return new Material("Cuero", Trama.LISA);
-  }
-
 }
