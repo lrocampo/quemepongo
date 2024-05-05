@@ -39,18 +39,13 @@ public class PrendaTest {
   }
 
   @Test
-  public void noPuedeHaberUnaPrendaSinTipo() {
-    assertThrows(NullPointerException.class, () -> new Prenda(null, Material.CUERO, colorPrincipal(), null, null));
-  }
-
-  @Test
-  public void noPuedeHaberUnaPrendaSinCategoria() {
-    assertThrows(NullPointerException.class, () -> new Prenda(Tipo.ZAPATO, null, colorPrincipal(), null, null));
+  public void noPuedeHaberUnaPrendaSinTipoYSinCategoria() {
+    assertThrows(NullPointerException.class, () -> new Borrador(null).crearPrenda());
   }
 
   @Test
   public void noPuedeHaberUnaPrendaSinColorPrincipal() {
-    assertThrows(NullPointerException.class, () -> new Prenda(Tipo.ZAPATO, Material.CUERO, null, null, null));
+    assertThrows(NullPointerException.class, this::zapatoSinColorPrincipal);
   }
 
   @Test
@@ -58,12 +53,30 @@ public class PrendaTest {
     assertNull(zapato().getColorSecundario());
   }
 
+  @Test
+  public void laTramaNoEsObligatoriaYEsLisaPorDefecto() {
+    assertEquals("LISA", zapato().getTrama().toString());
+  }
+
   private Prenda zapato() {
-    return new Prenda(Tipo.ZAPATO, Material.CUERO, colorPrincipal(), null, Trama.LISA);
+    Borrador borrador = new Borrador(TipoPrenda.ZAPATO);
+    borrador.especificarMaterial(Material.CUERO);
+    borrador.especificarColorPrincipal(colorPrincipal());
+    return borrador.crearPrenda();
   }
   
   private Prenda zapatoConColorOpcional() {
-    return new Prenda(Tipo.ZAPATO, Material.CUERO, colorPrincipal(), colorSecundario(), null);
+    Borrador borrador = new Borrador(TipoPrenda.ZAPATO);
+    borrador.especificarMaterial(Material.CUERO);
+    borrador.especificarColorPrincipal(colorPrincipal());
+    borrador.especificarColorSecundario(colorSecundario());
+    return borrador.crearPrenda();
+  }
+
+  private Prenda zapatoSinColorPrincipal() {
+    Borrador borrador = new Borrador(TipoPrenda.ZAPATO);
+    borrador.especificarMaterial(Material.CUERO);
+    return borrador.crearPrenda();
   }
   
   private Color colorPrincipal() {

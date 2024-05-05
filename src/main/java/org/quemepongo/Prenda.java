@@ -3,22 +3,22 @@ package org.quemepongo;
 import static java.util.Objects.requireNonNull;
 
 public class Prenda {
-  private Tipo tipoPrenda;
+  private TipoPrenda tipoPrenda;
   private Material material;
   private Color colorPrincipal;
   private Color colorSecundario;
   private Trama trama;
 
-  public Prenda(Tipo tipo, Material material, Color colorPrincipal, Color colorSecundario,
+  public Prenda(TipoPrenda tipo, Material material, Color colorPrincipal, Color colorSecundario,
                 Trama trama) {
-    this.tipoPrenda = requireNonNull(tipo, "tipo de prenda es obligatorio");
-    this.material = requireNonNull(material, "material es obligatorio");
-    this.colorPrincipal = requireNonNull(colorPrincipal, "color principal es obligatorio");
+    this.tipoPrenda = tipo;
+    this.material = material;
+    this.colorPrincipal = colorPrincipal;
     this.colorSecundario = colorSecundario;
     this.trama = trama;
   }
 
-  public Tipo getTipoPrenda() {
+  public TipoPrenda getTipoPrenda() {
     return tipoPrenda;
   }
 

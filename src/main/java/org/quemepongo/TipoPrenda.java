@@ -1,13 +1,13 @@
 package org.quemepongo;
 
-public enum Tipo {
+public enum TipoPrenda {
   ZAPATO(Categoria.CALZADO),
   CAMISA_MANGAS_CORTAS(Categoria.PARTE_SUPERIOR),
   PANTALON(Categoria.PARTE_INFERIOR);
 
   private final Categoria categoria;
 
-  Tipo(Categoria categoria) {
+  TipoPrenda(Categoria categoria) {
     this.categoria = categoria;
   }
 
