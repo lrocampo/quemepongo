@@ -59,4 +59,8 @@ public class Prenda {
   public boolean esInformal() {
     return this.formalidad == Formalidad.INFORMAL;
   }
+
+  public boolean esAptaTemperatura(Integer temperatura) {
+    return temperatura <= tipoPrenda.getTemperaturaMaxima();
+  }
 }
